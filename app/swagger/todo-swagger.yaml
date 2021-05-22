@@ -1,0 +1,342 @@
+swagger: "2.0"
+info:
+  description: "This is a TODO sample server"
+  version: "1.0.0"
+  title: "Swagger TODO"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/api"
+schemes:
+- "http"
+paths:
+  /todos:
+    get:
+      summary: "Task list"
+      operationId: "getasks"
+      produces:
+      - "application/json"
+      parameters:
+      - in: query
+        name: "status"
+        type: string
+        enum: [ completed, uncompleted, all ]
+        default: 'all'
+        description: "Filter TODO list by status"
+      responses:
+        "200":
+          description: "Task list"
+          schema:
+            required:
+              - status
+              - todo
+            properties:
+              status:
+                type: boolean
+                description: Status operation
+              todo:
+                type: array
+                items:
+                  $ref: "#/definitions/Task"
+          x-pm-test:
+            - params:
+              - name: status
+                in: query
+                value: 'all'
+            - params:
+              - name: status
+                in: query
+                value: 'completed'
+            - params:
+              - name: status
+                in: query
+                value: 'uncompleted'
+
+        "400":
+          description: Bad request
+          schema:
+            $ref: "#/definitions/Error"
+          x-pm-test:
+            - params:
+              - name: status
+                in: query
+                value: 'aaaa'
+
+        "default":
+          description: Internal server error
+          schema:
+            $ref: "#/definitions/Error"
+
+    post:
+      summary: "Add a new task"
+      operationId: "addTask"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "task"
+        description: "Task object that needs to be added to the TODO list"
+        required: true
+        schema:
+          required:
+            - todo
+          properties:
+            todo:
+              type: string
+              description: Task description
+      responses:
+        "201":
+          description: "Task created"
+          schema:
+            description: "Created task"
+            properties:
+              status:
+                type: boolean
+                description: Operation result
+              todo:
+                $ref: "#/definitions/Task"
+          x-pm-test:
+            - params:
+              - in: body
+                application/json: {
+                  todo: "Example  from API"
+                }
+              plugins:
+              - name: setCollectionVariable
+                params:
+                  var: 'task'
+                  item: 'todo.id'
+
+
+        "400":
+          description: Bad request
+          schema:
+            $ref: "#/definitions/Error"
+          x-pm-test:
+            - params:
+              - in: body
+                application/json: {
+                }
+
+        "default":
+          description: Internal server error
+          schema:
+            $ref: "#/definitions/Error"
+
+  /todos/{id}:
+    get:
+      summary: "Get task by ID"
+      operationId: "getTask"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Task id"
+        required: true
+        type: string
+        minLength: 24
+        maxLength: 24
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Task"
+          x-pm-test:
+            - params:
+              - name: id
+                in: path
+                value: '609cbf8974641d563ccb0701'
+
+        "400":
+          description: Bad request
+          schema:
+            $ref: "#/definitions/Error"
+          x-pm-test:
+            - params:
+              - name: id
+                in: path
+                value: 'aaaa'
+
+        "404":
+          description: Not found
+          schema:
+            $ref: "#/definitions/Error"
+          x-pm-test:
+            - params:
+              - name: id
+                in: path
+                value: '123456789012345678901234'
+
+        "default":
+          description: Internal server error
+          schema:
+            $ref: "#/definitions/Error"
+
+    patch:
+      summary: "Update an existing task"
+      operationId: "updateTask"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Task id"
+        required: true
+        type: string
+        minLength: 24
+        maxLength: 24
+      - in: "body"
+        name: "task"
+        description: "Task object that needs to be updated to the TODO"
+        required: true
+        schema:
+          properties:
+            todo:
+              type: string
+            completed:
+              type: boolean
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            properties:
+              status:
+                type: boolean
+                description: Operation result
+              todo:
+                description: "Updated task"
+                $ref: "#/definitions/Task"
+          x-pm-test:
+            - params:
+              - name: id
+                in: path
+                value: '609cbf8974641d563ccb0701'
+              - in: body
+                application/json: {
+                  completed: true
+                }
+            - params:
+              - name: id
+                in: path
+                value: '609cbf8974641d563ccb0701'
+              - in: body
+                application/json: {
+                  todo: "task updated from swagger"
+                }
+
+        "400":
+          description: Bad request
+          schema:
+            $ref: "#/definitions/Error"
+          x-pm-test:
+            - params:
+              - name: id
+                in: path
+                value: '609cbf8974641d563ccb0701'
+              - in: body
+                application/json: {
+                }
+
+        "404":
+          description: Bad request
+          schema:
+            $ref: "#/definitions/Error"
+          x-pm-test:
+            - params:
+              - name: id
+                in: path
+                value: '123456789012345678901234'
+              - in: body
+                application/json: {
+                  todo: "task updated from swagger"
+                }
+
+        "default":
+          description: Internal server error
+          schema:
+            $ref: "#/definitions/Error"
+
+    delete:
+      summary: "Delete task by ID"
+      operationId: "deleteTask"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Task id"
+        required: true
+        type: string
+        minLength: 24
+        maxLength: 24
+      responses:
+        "204":
+          description: "successful operation"
+          x-pm-test:
+            - params:
+              - name: id
+                in: path
+                value: '{{task}}'
+
+        "400":
+          description: Bad request
+          x-pm-test:
+            - params:
+              - name: id
+                in: path
+                value: '1234'
+
+        "404":
+          description: Not found
+          schema:
+            $ref: "#/definitions/Error"
+          x-pm-test:
+            - params:
+              - name: id
+                in: path
+                value: '123456789012345678901234'
+
+        "default":
+          description: Internal server error
+
+definitions:
+  Task:
+    description: Task
+    required:
+      - id
+      - todo
+      - completed
+      - created
+    properties:
+      id:
+        type: string
+        readOnly: true
+        description: Task ID
+      todo:
+        type: string
+        description: Task description
+      completed:
+        type: boolean
+        description: Is completed
+      created:
+        type: string
+        format: date-time
+
+  Error:
+    description: Error message
+    required:
+      - status
+      - error
+    properties:
+      status:
+        type: boolean
+        description: Status operation
+      error:
+        type: string
+        description: Error message

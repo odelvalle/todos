@@ -1,0 +1,895 @@
+{
+  "item": [
+    {
+      "id": "e36907f5-2a8e-4a67-bdd2-3f32248cb531",
+      "name": "[200] on /todos",
+      "request": {
+        "url": {
+          "path": [
+            "todos"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "all"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": ""
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "body": {
+          "mode": "formData",
+          "formdata": []
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "8a87f3fc-d2e5-4d06-8210-56b23a0df3b1",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "});",
+              "pm.test(\"Status code is 200\", function() {",
+              "  pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "6e2e180b-14f1-4098-b97f-d7501f7f337d",
+      "name": "[200] on /todos",
+      "request": {
+        "url": {
+          "path": [
+            "todos"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "completed"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": ""
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "body": {
+          "mode": "formData",
+          "formdata": []
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "43610aef-8d07-4481-be94-463c358f0f1e",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "});",
+              "pm.test(\"Status code is 200\", function() {",
+              "  pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "3a11b4b4-921e-4bd4-aa8f-16ca2eee4caf",
+      "name": "[200] on /todos",
+      "request": {
+        "url": {
+          "path": [
+            "todos"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "uncompleted"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": ""
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "body": {
+          "mode": "formData",
+          "formdata": []
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "442950f4-2ac5-4915-a5f1-9ac14b805a53",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "});",
+              "pm.test(\"Status code is 200\", function() {",
+              "  pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "e7065528-4e57-4fe2-b900-d474e66af867",
+      "name": "[400] on /todos",
+      "request": {
+        "url": {
+          "path": [
+            "todos"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "aaaa"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": ""
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "body": {
+          "mode": "formData",
+          "formdata": []
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "9dc4bc4d-df3a-4221-8ebf-c8488506b721",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "});",
+              "pm.test(\"Status code is 400\", function() {",
+              "  pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "133bfde3-c8fa-4c23-820d-a91910d157d7",
+      "name": "[201] on /todos",
+      "request": {
+        "url": {
+          "path": [
+            "todos"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"todo\": \"Example  from API\"\n}"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "6de47add-f927-426e-9634-ee57345cd40b",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
+              "});",
+              "pm.test(\"Status code is 201\", function() {",
+              "  pm.response.to.have.status(201);",
+              "});",
+              "// Set task from todo.id",
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set(\"task\", jsonData.todo.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "94b75c59-288c-4af7-8798-d945af4eeea0",
+      "name": "[400] on /todos",
+      "request": {
+        "url": {
+          "path": [
+            "todos"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "02f47115-a618-40cc-9b68-696ae6c399cf",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
+              "});",
+              "pm.test(\"Status code is 400\", function() {",
+              "  pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "8e9ccefb-96a8-4113-89e6-38ead174a3e9",
+      "name": "[200] on /todos/:id",
+      "request": {
+        "url": {
+          "path": [
+            "todos",
+            ":id"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "609cbf8974641d563ccb0701"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": ""
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "body": {
+          "mode": "formData",
+          "formdata": []
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "bb220503-209d-475f-b090-8f859aa600de",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "});",
+              "pm.test(\"Status code is 200\", function() {",
+              "  pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "76601e62-fddc-4086-bb35-772d4187baa1",
+      "name": "[400] on /todos/:id",
+      "request": {
+        "url": {
+          "path": [
+            "todos",
+            ":id"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "aaaa"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": ""
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "body": {
+          "mode": "formData",
+          "formdata": []
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "25a9dfe9-b314-472c-bf0f-241074797aeb",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "});",
+              "pm.test(\"Status code is 400\", function() {",
+              "  pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "24938c45-8248-4d4d-bb44-90030b43edb3",
+      "name": "[404] on /todos/:id",
+      "request": {
+        "url": {
+          "path": [
+            "todos",
+            ":id"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "123456789012345678901234"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": ""
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "body": {
+          "mode": "formData",
+          "formdata": []
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "33741d1c-323e-4652-8ee5-1ef6d60218d6",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "});",
+              "pm.test(\"Status code is 404\", function() {",
+              "  pm.response.to.have.status(404);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "0a94934b-f5d1-4031-af62-2c04c51c9595",
+      "name": "[200] on /todos/:id",
+      "request": {
+        "url": {
+          "path": [
+            "todos",
+            ":id"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "609cbf8974641d563ccb0701"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"completed\": true\n}"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "dd34ab63-9e55-4fc2-85ff-f3ddd414c5fa",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
+              "});",
+              "pm.test(\"Status code is 200\", function() {",
+              "  pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "50937aa0-4d0c-428b-acad-a8d1a8fafdd2",
+      "name": "[200] on /todos/:id",
+      "request": {
+        "url": {
+          "path": [
+            "todos",
+            ":id"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "609cbf8974641d563ccb0701"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"todo\": \"task updated from swagger\"\n}"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "f844bebb-4d5b-4a8b-aa2a-7980b3deffe7",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
+              "});",
+              "pm.test(\"Status code is 200\", function() {",
+              "  pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c59bebd6-a050-4b43-8810-29d8897f81fa",
+      "name": "[400] on /todos/:id",
+      "request": {
+        "url": {
+          "path": [
+            "todos",
+            ":id"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "609cbf8974641d563ccb0701"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "16b65600-3826-45e1-af8a-5956e08a2e7a",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
+              "});",
+              "pm.test(\"Status code is 400\", function() {",
+              "  pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "1c868168-9dd3-4d11-8795-46a218516498",
+      "name": "[404] on /todos/:id",
+      "request": {
+        "url": {
+          "path": [
+            "todos",
+            ":id"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "123456789012345678901234"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"todo\": \"task updated from swagger\"\n}"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "922a3ebe-7703-4e6d-ad95-531568a912e7",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
+              "});",
+              "pm.test(\"Status code is 404\", function() {",
+              "  pm.response.to.have.status(404);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "78898159-f8ae-431a-9d28-0cd51d1bf76a",
+      "name": "[204] on /todos/:id",
+      "request": {
+        "url": {
+          "path": [
+            "todos",
+            ":id"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "{{task}}"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": ""
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "body": {
+          "mode": "formData",
+          "formdata": []
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "1f2fb02a-bf64-4f13-8c59-ec85404801ce",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Body is empty\", function() {",
+              "  var data = pm.response.text();",
+              "  pm.expect(data === undefined || data === '').to.eql(true);",
+              "});",
+              "pm.test(\"Status code is 204\", function() {",
+              "  pm.response.to.have.status(204);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "af2769fc-d023-40a3-913b-bd917974635f",
+      "name": "[400] on /todos/:id",
+      "request": {
+        "url": {
+          "path": [
+            "todos",
+            ":id"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1234"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": ""
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "body": {
+          "mode": "formData",
+          "formdata": []
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "00107672-bc24-4ec2-bc15-f4149fa81fc7",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "});",
+              "pm.test(\"Status code is 400\", function() {",
+              "  pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "7a5c24af-0bc3-420a-b009-e8650860a582",
+      "name": "[404] on /todos/:id",
+      "request": {
+        "url": {
+          "path": [
+            "todos",
+            ":id"
+          ],
+          "host": [
+            "{{base-url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "123456789012345678901234"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "accept",
+            "value": ""
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "body": {
+          "mode": "formData",
+          "formdata": []
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "bea835bf-dc04-4999-9a18-c065314d17cd",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Content-Type is present\", function() {",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "});",
+              "pm.test(\"Status code is 404\", function() {",
+              "  pm.response.to.have.status(404);",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "id": "base-url",
+      "type": "string",
+      "value": "http://localhost:3000/api",
+      "key": "base-url"
+    }
+  ],
+  "info": {
+    "_postman_id": "7db43d00-3868-416f-8bf9-d3e72f03bd56",
+    "name": "Swagger TODO",
+    "version": {
+      "raw": "1.0.0",
+      "major": 1,
+      "minor": 0,
+      "patch": 0,
+      "prerelease": [],
+      "build": [],
+      "string": "1.0.0"
+    },
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  }
+}
