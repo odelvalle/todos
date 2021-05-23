@@ -30,16 +30,16 @@ Feature: TODOs Service
     Then I receive <response>
 
     Examples:
-      | id | response                                                                                                                                      |
-      | 609cbf8974641d563ccb0701 | {"id":99,"name":"Dwayne Klocko","email":"Rene30@hotmail.com","phoneNumber":"1-876-420-9890","secondaryPhoneNumber": "(914) 249-3519"}         |
-      | 7  | {"id":7,"name":"Ian Weimann DVM","email":"Euna_Bergstrom@hotmail.com","phoneNumber":"(297) 962-1879", "secondaryPhoneNumber": "788.323.7782"} |
+      | id                       | response                                                                                                                                          |
+      | 609cbf8974641d563ccb0701 | {"status":true,"todo":{"id":"609cbf8974641d563ccb0701","todo":"task updated from swagger","created":"2021-05-13T05:56:25.838Z","completed":true}} |
+      | 609cc7cd3cf87b552c62a57b | {"status":true,"todo":{"id":"609cc7cd3cf87b552c62a57b","todo":"example","created":"2021-05-13T06:31:41.961Z","completed":false}}                  |
 
   Scenario Outline: delete todo
-    Given The todo with <id> exist
+    Given The Todo with <id> exist
     When I send DELETE request to /todos
     Then I get response code 204
 
     Examples:
       | id |
-      | 99 |
-      | 7  |
+      | 609cbf8974641d563ccb0701 |
+      | 609cc7cd3cf87b552c62a57b |
