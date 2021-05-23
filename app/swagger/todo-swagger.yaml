@@ -44,14 +44,32 @@ paths:
               - name: status
                 in: query
                 value: 'all'
+              plugins:
+                - name: valueCheck
+                  params:
+                    item: 'status'
+                    value: true
+                - name: testSchema
             - params:
               - name: status
                 in: query
                 value: 'completed'
+              plugins:
+                - name: valueCheck
+                  params:
+                    item: 'status'
+                    value: true
+                - name: testSchema
             - params:
               - name: status
                 in: query
                 value: 'uncompleted'
+              plugins:
+                - name: valueCheck
+                  params:
+                    item: 'status'
+                    value: true
+                - name: testSchema
 
         "400":
           description: Bad request
@@ -62,6 +80,12 @@ paths:
               - name: status
                 in: query
                 value: 'aaaa'
+              plugins:
+                - name: valueCheck
+                  params:
+                    item: 'status'
+                    value: false
+                - name: testSchema
 
         "default":
           description: Internal server error
@@ -110,7 +134,6 @@ paths:
                   var: 'task'
                   item: 'todo.id'
 
-
         "400":
           description: Bad request
           schema:
@@ -144,12 +167,23 @@ paths:
         "200":
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Task"
+            properties:
+              status:
+                type: boolean
+                description: Status operation
+              todo:
+                $ref: "#/definitions/Task"
           x-pm-test:
             - params:
               - name: id
                 in: path
                 value: '609cbf8974641d563ccb0701'
+              plugins:
+                - name: valueCheck
+                  params:
+                    item: 'status'
+                    value: true
+                - name: testSchema
 
         "400":
           description: Bad request
@@ -160,6 +194,12 @@ paths:
               - name: id
                 in: path
                 value: 'aaaa'
+              plugins:
+                - name: valueCheck
+                  params:
+                    item: 'status'
+                    value: false
+                - name: testSchema
 
         "404":
           description: Not found
@@ -170,6 +210,12 @@ paths:
               - name: id
                 in: path
                 value: '123456789012345678901234'
+              plugins:
+                - name: valueCheck
+                  params:
+                    item: 'status'
+                    value: false
+                - name: testSchema
 
         "default":
           description: Internal server error
@@ -286,6 +332,8 @@ paths:
 
         "400":
           description: Bad request
+          schema:
+            $ref: "#/definitions/Error"
           x-pm-test:
             - params:
               - name: id

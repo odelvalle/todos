@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "e36907f5-2a8e-4a67-bdd2-3f32248cb531",
+      "id": "a90d85a1-cff2-4fbb-bf40-924e3973d6b0",
       "name": "[200] on /todos",
       "request": {
         "url": {
@@ -40,22 +40,65 @@
         {
           "listen": "test",
           "script": {
-            "id": "8a87f3fc-d2e5-4d06-8210-56b23a0df3b1",
+            "id": "301572ca-c21c-4495-bce9-e710f4071228",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
-              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
               "});",
               "pm.test(\"Status code is 200\", function() {",
               "  pm.response.to.have.status(200);",
-              "});"
+              "});",
+              "pm.test(\"status is true\", function() {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.status).to.eql(true);",
+              "});",
+              "// Test whether the response matches the schema",
+              "const responseSchema = {",
+              "  \"required\": [\"status\", \"todo\"],",
+              "  \"properties\": {",
+              "    \"status\": {",
+              "      \"type\": \"boolean\",",
+              "      \"description\": \"Status operation\"",
+              "    },",
+              "    \"todo\": {",
+              "      \"type\": \"array\",",
+              "      \"items\": {",
+              "        \"description\": \"Task\",",
+              "        \"required\": [\"id\", \"todo\", \"completed\", \"created\"],",
+              "        \"properties\": {",
+              "          \"id\": {",
+              "            \"type\": \"string\",",
+              "            \"readOnly\": true,",
+              "            \"description\": \"Task ID\"",
+              "          },",
+              "          \"todo\": {",
+              "            \"type\": \"string\",",
+              "            \"description\": \"Task description\"",
+              "          },",
+              "          \"completed\": {",
+              "            \"type\": \"boolean\",",
+              "            \"description\": \"Is completed\"",
+              "          },",
+              "          \"created\": {",
+              "            \"type\": \"string\",",
+              "            \"format\": \"date-time\"",
+              "          }",
+              "        }",
+              "      }",
+              "    }",
+              "  }",
+              "};",
+              "",
+              "var response = JSON.parse(responseBody);",
+              "tests[\"Schema is valid\"] = tv4.validate(response, responseSchema);"
             ]
           }
         }
       ]
     },
     {
-      "id": "6e2e180b-14f1-4098-b97f-d7501f7f337d",
+      "id": "78d7e234-c920-43c9-a226-62a4b5bbfa2e",
       "name": "[200] on /todos",
       "request": {
         "url": {
@@ -94,22 +137,65 @@
         {
           "listen": "test",
           "script": {
-            "id": "43610aef-8d07-4481-be94-463c358f0f1e",
+            "id": "5f27b3bd-3861-4888-a9ff-b5135a6d6618",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
-              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
               "});",
               "pm.test(\"Status code is 200\", function() {",
               "  pm.response.to.have.status(200);",
-              "});"
+              "});",
+              "pm.test(\"status is true\", function() {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.status).to.eql(true);",
+              "});",
+              "// Test whether the response matches the schema",
+              "const responseSchema = {",
+              "  \"required\": [\"status\", \"todo\"],",
+              "  \"properties\": {",
+              "    \"status\": {",
+              "      \"type\": \"boolean\",",
+              "      \"description\": \"Status operation\"",
+              "    },",
+              "    \"todo\": {",
+              "      \"type\": \"array\",",
+              "      \"items\": {",
+              "        \"description\": \"Task\",",
+              "        \"required\": [\"id\", \"todo\", \"completed\", \"created\"],",
+              "        \"properties\": {",
+              "          \"id\": {",
+              "            \"type\": \"string\",",
+              "            \"readOnly\": true,",
+              "            \"description\": \"Task ID\"",
+              "          },",
+              "          \"todo\": {",
+              "            \"type\": \"string\",",
+              "            \"description\": \"Task description\"",
+              "          },",
+              "          \"completed\": {",
+              "            \"type\": \"boolean\",",
+              "            \"description\": \"Is completed\"",
+              "          },",
+              "          \"created\": {",
+              "            \"type\": \"string\",",
+              "            \"format\": \"date-time\"",
+              "          }",
+              "        }",
+              "      }",
+              "    }",
+              "  }",
+              "};",
+              "",
+              "var response = JSON.parse(responseBody);",
+              "tests[\"Schema is valid\"] = tv4.validate(response, responseSchema);"
             ]
           }
         }
       ]
     },
     {
-      "id": "3a11b4b4-921e-4bd4-aa8f-16ca2eee4caf",
+      "id": "09ce9611-0377-40b9-a55a-0d0ba1f34a88",
       "name": "[200] on /todos",
       "request": {
         "url": {
@@ -148,22 +234,65 @@
         {
           "listen": "test",
           "script": {
-            "id": "442950f4-2ac5-4915-a5f1-9ac14b805a53",
+            "id": "a5625971-aab4-4d35-8ada-2ded330b8fc7",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
-              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
               "});",
               "pm.test(\"Status code is 200\", function() {",
               "  pm.response.to.have.status(200);",
-              "});"
+              "});",
+              "pm.test(\"status is true\", function() {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.status).to.eql(true);",
+              "});",
+              "// Test whether the response matches the schema",
+              "const responseSchema = {",
+              "  \"required\": [\"status\", \"todo\"],",
+              "  \"properties\": {",
+              "    \"status\": {",
+              "      \"type\": \"boolean\",",
+              "      \"description\": \"Status operation\"",
+              "    },",
+              "    \"todo\": {",
+              "      \"type\": \"array\",",
+              "      \"items\": {",
+              "        \"description\": \"Task\",",
+              "        \"required\": [\"id\", \"todo\", \"completed\", \"created\"],",
+              "        \"properties\": {",
+              "          \"id\": {",
+              "            \"type\": \"string\",",
+              "            \"readOnly\": true,",
+              "            \"description\": \"Task ID\"",
+              "          },",
+              "          \"todo\": {",
+              "            \"type\": \"string\",",
+              "            \"description\": \"Task description\"",
+              "          },",
+              "          \"completed\": {",
+              "            \"type\": \"boolean\",",
+              "            \"description\": \"Is completed\"",
+              "          },",
+              "          \"created\": {",
+              "            \"type\": \"string\",",
+              "            \"format\": \"date-time\"",
+              "          }",
+              "        }",
+              "      }",
+              "    }",
+              "  }",
+              "};",
+              "",
+              "var response = JSON.parse(responseBody);",
+              "tests[\"Schema is valid\"] = tv4.validate(response, responseSchema);"
             ]
           }
         }
       ]
     },
     {
-      "id": "e7065528-4e57-4fe2-b900-d474e66af867",
+      "id": "ca4e281b-e03c-4e4e-80b4-2f50a66a7466",
       "name": "[400] on /todos",
       "request": {
         "url": {
@@ -202,22 +331,44 @@
         {
           "listen": "test",
           "script": {
-            "id": "9dc4bc4d-df3a-4221-8ebf-c8488506b721",
+            "id": "d729bcc3-152a-4591-a20a-5d507c4bd118",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
-              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
               "});",
               "pm.test(\"Status code is 400\", function() {",
               "  pm.response.to.have.status(400);",
-              "});"
+              "});",
+              "pm.test(\"status is false\", function() {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.status).to.eql(false);",
+              "});",
+              "// Test whether the response matches the schema",
+              "const responseSchema = {",
+              "  \"description\": \"Error message\",",
+              "  \"required\": [\"status\", \"error\"],",
+              "  \"properties\": {",
+              "    \"status\": {",
+              "      \"type\": \"boolean\",",
+              "      \"description\": \"Status operation\"",
+              "    },",
+              "    \"error\": {",
+              "      \"type\": \"string\",",
+              "      \"description\": \"Error message\"",
+              "    }",
+              "  }",
+              "};",
+              "",
+              "var response = JSON.parse(responseBody);",
+              "tests[\"Schema is valid\"] = tv4.validate(response, responseSchema);"
             ]
           }
         }
       ]
     },
     {
-      "id": "133bfde3-c8fa-4c23-820d-a91910d157d7",
+      "id": "2f0ed663-e964-4159-9da6-40dd30ed94c3",
       "name": "[201] on /todos",
       "request": {
         "url": {
@@ -251,7 +402,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "6de47add-f927-426e-9634-ee57345cd40b",
+            "id": "55936510-dcd5-48db-bb0e-743c58017d60",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
@@ -269,7 +420,7 @@
       ]
     },
     {
-      "id": "94b75c59-288c-4af7-8798-d945af4eeea0",
+      "id": "9c0f1281-6197-4dda-a554-84f6a14c4fb1",
       "name": "[400] on /todos",
       "request": {
         "url": {
@@ -303,7 +454,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "02f47115-a618-40cc-9b68-696ae6c399cf",
+            "id": "c0be6183-ce42-4aa9-b191-aa7324690b76",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
@@ -318,7 +469,7 @@
       ]
     },
     {
-      "id": "8e9ccefb-96a8-4113-89e6-38ead174a3e9",
+      "id": "6021b272-f6d4-408f-a729-61cda0918a87",
       "name": "[200] on /todos/:id",
       "request": {
         "url": {
@@ -358,22 +509,61 @@
         {
           "listen": "test",
           "script": {
-            "id": "bb220503-209d-475f-b090-8f859aa600de",
+            "id": "9e5ae07f-a974-4ba1-9565-317a0fa79731",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
-              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
               "});",
               "pm.test(\"Status code is 200\", function() {",
               "  pm.response.to.have.status(200);",
-              "});"
+              "});",
+              "pm.test(\"status is true\", function() {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.status).to.eql(true);",
+              "});",
+              "// Test whether the response matches the schema",
+              "const responseSchema = {",
+              "  \"properties\": {",
+              "    \"status\": {",
+              "      \"type\": \"boolean\",",
+              "      \"description\": \"Status operation\"",
+              "    },",
+              "    \"todo\": {",
+              "      \"description\": \"Task\",",
+              "      \"required\": [\"id\", \"todo\", \"completed\", \"created\"],",
+              "      \"properties\": {",
+              "        \"id\": {",
+              "          \"type\": \"string\",",
+              "          \"readOnly\": true,",
+              "          \"description\": \"Task ID\"",
+              "        },",
+              "        \"todo\": {",
+              "          \"type\": \"string\",",
+              "          \"description\": \"Task description\"",
+              "        },",
+              "        \"completed\": {",
+              "          \"type\": \"boolean\",",
+              "          \"description\": \"Is completed\"",
+              "        },",
+              "        \"created\": {",
+              "          \"type\": \"string\",",
+              "          \"format\": \"date-time\"",
+              "        }",
+              "      }",
+              "    }",
+              "  }",
+              "};",
+              "",
+              "var response = JSON.parse(responseBody);",
+              "tests[\"Schema is valid\"] = tv4.validate(response, responseSchema);"
             ]
           }
         }
       ]
     },
     {
-      "id": "76601e62-fddc-4086-bb35-772d4187baa1",
+      "id": "3243803a-26aa-413e-a67e-433a3b89a02c",
       "name": "[400] on /todos/:id",
       "request": {
         "url": {
@@ -413,22 +603,44 @@
         {
           "listen": "test",
           "script": {
-            "id": "25a9dfe9-b314-472c-bf0f-241074797aeb",
+            "id": "bc27b44d-2106-404b-8a8a-237bf4d846ce",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
-              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
               "});",
               "pm.test(\"Status code is 400\", function() {",
               "  pm.response.to.have.status(400);",
-              "});"
+              "});",
+              "pm.test(\"status is false\", function() {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.status).to.eql(false);",
+              "});",
+              "// Test whether the response matches the schema",
+              "const responseSchema = {",
+              "  \"description\": \"Error message\",",
+              "  \"required\": [\"status\", \"error\"],",
+              "  \"properties\": {",
+              "    \"status\": {",
+              "      \"type\": \"boolean\",",
+              "      \"description\": \"Status operation\"",
+              "    },",
+              "    \"error\": {",
+              "      \"type\": \"string\",",
+              "      \"description\": \"Error message\"",
+              "    }",
+              "  }",
+              "};",
+              "",
+              "var response = JSON.parse(responseBody);",
+              "tests[\"Schema is valid\"] = tv4.validate(response, responseSchema);"
             ]
           }
         }
       ]
     },
     {
-      "id": "24938c45-8248-4d4d-bb44-90030b43edb3",
+      "id": "a6c2f2ec-0f1c-43d0-bbca-4ddc6c02ce5a",
       "name": "[404] on /todos/:id",
       "request": {
         "url": {
@@ -468,22 +680,44 @@
         {
           "listen": "test",
           "script": {
-            "id": "33741d1c-323e-4652-8ee5-1ef6d60218d6",
+            "id": "adda350e-777c-467b-a846-562431abd0b7",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
-              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
               "});",
               "pm.test(\"Status code is 404\", function() {",
               "  pm.response.to.have.status(404);",
-              "});"
+              "});",
+              "pm.test(\"status is false\", function() {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.status).to.eql(false);",
+              "});",
+              "// Test whether the response matches the schema",
+              "const responseSchema = {",
+              "  \"description\": \"Error message\",",
+              "  \"required\": [\"status\", \"error\"],",
+              "  \"properties\": {",
+              "    \"status\": {",
+              "      \"type\": \"boolean\",",
+              "      \"description\": \"Status operation\"",
+              "    },",
+              "    \"error\": {",
+              "      \"type\": \"string\",",
+              "      \"description\": \"Error message\"",
+              "    }",
+              "  }",
+              "};",
+              "",
+              "var response = JSON.parse(responseBody);",
+              "tests[\"Schema is valid\"] = tv4.validate(response, responseSchema);"
             ]
           }
         }
       ]
     },
     {
-      "id": "0a94934b-f5d1-4031-af62-2c04c51c9595",
+      "id": "8330e988-897e-4775-a326-bc253415da5c",
       "name": "[200] on /todos/:id",
       "request": {
         "url": {
@@ -523,7 +757,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "dd34ab63-9e55-4fc2-85ff-f3ddd414c5fa",
+            "id": "6c751a8e-92c1-46c0-8b9e-d1abd1af2bff",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
@@ -538,7 +772,7 @@
       ]
     },
     {
-      "id": "50937aa0-4d0c-428b-acad-a8d1a8fafdd2",
+      "id": "a2b3ad62-8a95-4231-b2dc-870566e4e15c",
       "name": "[200] on /todos/:id",
       "request": {
         "url": {
@@ -578,7 +812,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "f844bebb-4d5b-4a8b-aa2a-7980b3deffe7",
+            "id": "e86ce58a-d057-463a-99b6-179a336f6773",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
@@ -593,7 +827,7 @@
       ]
     },
     {
-      "id": "c59bebd6-a050-4b43-8810-29d8897f81fa",
+      "id": "64ad0ba4-ab08-461d-aa3d-1a12b68bc18d",
       "name": "[400] on /todos/:id",
       "request": {
         "url": {
@@ -633,7 +867,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "16b65600-3826-45e1-af8a-5956e08a2e7a",
+            "id": "86b210c5-e5b6-4238-81ef-92aa65bfb0b4",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
@@ -648,7 +882,7 @@
       ]
     },
     {
-      "id": "1c868168-9dd3-4d11-8795-46a218516498",
+      "id": "4087dc6c-c0f8-4b26-8dc2-034e00a6124c",
       "name": "[404] on /todos/:id",
       "request": {
         "url": {
@@ -688,7 +922,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "922a3ebe-7703-4e6d-ad95-531568a912e7",
+            "id": "ccd58056-dc2d-4532-a37d-b33291f9682b",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
@@ -703,7 +937,7 @@
       ]
     },
     {
-      "id": "78898159-f8ae-431a-9d28-0cd51d1bf76a",
+      "id": "dd8cc727-32f1-4fb9-9469-df9fcd635910",
       "name": "[204] on /todos/:id",
       "request": {
         "url": {
@@ -743,7 +977,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "1f2fb02a-bf64-4f13-8c59-ec85404801ce",
+            "id": "f084b8c3-da48-4242-892a-b1da37b812c1",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Body is empty\", function() {",
@@ -759,7 +993,7 @@
       ]
     },
     {
-      "id": "af2769fc-d023-40a3-913b-bd917974635f",
+      "id": "bc35dcfd-3832-4bda-a3bc-8b25b4caa73b",
       "name": "[400] on /todos/:id",
       "request": {
         "url": {
@@ -799,11 +1033,11 @@
         {
           "listen": "test",
           "script": {
-            "id": "00107672-bc24-4ec2-bc15-f4149fa81fc7",
+            "id": "6f32687e-ecfe-44d7-a929-49647af0bea4",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
-              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
               "});",
               "pm.test(\"Status code is 400\", function() {",
               "  pm.response.to.have.status(400);",
@@ -814,7 +1048,7 @@
       ]
     },
     {
-      "id": "7a5c24af-0bc3-420a-b009-e8650860a582",
+      "id": "86bb95cf-7f6a-4d93-a86c-7865a4efcc6b",
       "name": "[404] on /todos/:id",
       "request": {
         "url": {
@@ -854,11 +1088,11 @@
         {
           "listen": "test",
           "script": {
-            "id": "bea835bf-dc04-4999-9a18-c065314d17cd",
+            "id": "25fa6ff3-c5e8-4987-855e-b20dfeeb9330",
             "type": "text/javascript",
             "exec": [
               "pm.test(\"Content-Type is present\", function() {",
-              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"undefined\"));",
+              "  pm.expect(pm.response.headers.has(\"Content-Type\", \"application/json\"));",
               "});",
               "pm.test(\"Status code is 404\", function() {",
               "  pm.response.to.have.status(404);",
@@ -879,7 +1113,7 @@
     }
   ],
   "info": {
-    "_postman_id": "7db43d00-3868-416f-8bf9-d3e72f03bd56",
+    "_postman_id": "5e49b906-e097-4e09-8c0d-25c01139539c",
     "name": "Swagger TODO",
     "version": {
       "raw": "1.0.0",
