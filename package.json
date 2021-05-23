@@ -9,7 +9,8 @@
     "unit-test": "node_modules/.bin/nyc --reporter=lcov mocha --timeout 0 test/todo.unit.test.js",
     "integration-test": "mocha --timeout 0 --exit test/todo.integration.test.js",
     "integration-swagger-test": "mocha --timeout 0 --exit test/todo.swagger.test.js",
-    "bdd-test": "./node_modules/.bin/cucumber-js --exit ./bdd/features/ -r ./bdd/steps/"
+    "bdd-test": "./node_modules/.bin/cucumber-js --exit ./bdd/features/ -r ./bdd/steps/ -f json:bdd/report/cucumber_report.json",
+    "k6-test": "k6 run ./k6/load-test.k6.js"
   },
   "bin": {
     "codecov": "./bin/codecov"
