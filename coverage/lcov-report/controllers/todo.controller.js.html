@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>61/61</span>
+                <span class='fraction'>55/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">97.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>39/40</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>45/45</span>
+                <span class='fraction'>40/40</span>
             </div>
         
             
@@ -189,15 +189,7 @@
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
 <a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a>
-<a name='L136'></a><a href='#L136'>136</a>
-<a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a>
-<a name='L140'></a><a href='#L140'>140</a>
-<a name='L141'></a><a href='#L141'>141</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L133'></a><a href='#L133'>133</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -263,7 +255,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -276,39 +267,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -392,7 +376,7 @@ const TodoCtrl = {
     },
 &nbsp;
     // Post a todo into Database
-    PostTodo: async (req, res) =&gt; {
+    PostTodo: (req, res) =&gt; {
       const error = schema.validate({
         path: '/todos',
         method: 'post',
@@ -401,8 +385,7 @@ const TodoCtrl = {
       });
       if (error) return res.status(400).json({status: false, error: error.message});
 &nbsp;
-      const todo = await Todo.create(req.body)
-      todo.save((err, todo) =&gt; {
+      const todo = Todo.create(req.body, (err, todo) =&gt; {
         if (err) return res.status(500).json({status: false, error: err.message});
 &nbsp;
         return res.status(201).json({status: true, todo: {
@@ -436,24 +419,17 @@ const TodoCtrl = {
       if (idError) return res.status(400).json({status: false, error: idError.message});
 &nbsp;
       var task = req.body;
-      Todo.findOne({_id: req.params.id}, (err, todo) =&gt; {
+&nbsp;
+      Todo.findOneAndUpdate({_id: req.params.id}, task, { new: true}, (err, todo) =&gt; {
         if (err) return res.status(500).json({status: false, error: err.message});
         if (todo === null) return res.status(404).json({status: false, error: 'Not found'});
 &nbsp;
-        // update model
-        todo.completed = task.completed || todo.completed;
-        todo.todo = task.todo || <span class="branch-1 cbranch-no" title="branch not covered" >todo.todo;</span>
-&nbsp;
-        todo.save((err, todo) =&gt; {
-          if (err) return res.status(500).json({status: false, error: err.message});
-&nbsp;
-          return res.json({status: true, todo: {
-            id: todo.id,
-            todo: todo.todo,
-            created: todo.created,
-            completed: todo.completed
-          }});
-        });
+        return res.json({status: true, todo: {
+          id: todo.id,
+          todo: todo.todo,
+          created: todo.created,
+          completed: todo.completed
+        }});
       });
     },
 &nbsp;
@@ -469,7 +445,7 @@ const TodoCtrl = {
 &nbsp;
       Todo.remove({_id: req.params.id}, (err, todo) =&gt; {
         if (err) return res.status(500).json({status: false, error: err.message});
-        if (todo.result.n === 0) return res.status(404).json({status: false, error: 'Path not found.'});
+        if (todo.result.n === 0) return res.status(404).json({status: false, error: 'Not found.'});
 &nbsp;
         return res.status(204).end();
       });
@@ -484,7 +460,7 @@ module.exports = TodoCtrl;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat May 22 2021 12:34:00 GMT+0200 (Central European Summer Time)
+                at Tue May 25 2021 07:59:39 GMT+0200 (Central European Summer Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

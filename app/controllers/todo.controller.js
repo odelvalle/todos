@@ -53,7 +53,7 @@ const TodoCtrl = {
     },
 
     // Post a todo into Database
-    PostTodo: async (req, res) => {
+    PostTodo: (req, res) => {
       const error = schema.validate({
         path: '/todos',
         method: 'post',
@@ -62,8 +62,7 @@ const TodoCtrl = {
       });
       if (error) return res.status(400).json({status: false, error: error.message});
 
-      const todo = await Todo.create(req.body)
-      todo.save((err, todo) => {
+      const todo = Todo.create(req.body, (err, todo) => {
         if (err) return res.status(500).json({status: false, error: err.message});
 
         return res.status(201).json({status: true, todo: {
@@ -97,24 +96,17 @@ const TodoCtrl = {
       if (idError) return res.status(400).json({status: false, error: idError.message});
 
       var task = req.body;
-      Todo.findOne({_id: req.params.id}, (err, todo) => {
+
+      Todo.findOneAndUpdate({_id: req.params.id}, task, { new: true}, (err, todo) => {
         if (err) return res.status(500).json({status: false, error: err.message});
         if (todo === null) return res.status(404).json({status: false, error: 'Not found'});
 
-        // update model
-        todo.completed = task.completed || todo.completed;
-        todo.todo = task.todo || todo.todo;
-
-        todo.save((err, todo) => {
-          if (err) return res.status(500).json({status: false, error: err.message});
-
-          return res.json({status: true, todo: {
-            id: todo.id,
-            todo: todo.todo,
-            created: todo.created,
-            completed: todo.completed
-          }});
-        });
+        return res.json({status: true, todo: {
+          id: todo.id,
+          todo: todo.todo,
+          created: todo.created,
+          completed: todo.completed
+        }});
       });
     },
 
@@ -130,7 +122,7 @@ const TodoCtrl = {
 
       Todo.remove({_id: req.params.id}, (err, todo) => {
         if (err) return res.status(500).json({status: false, error: err.message});
-        if (todo.result.n === 0) return res.status(404).json({status: false, error: 'Path not found.'});
+        if (todo.result.n === 0) return res.status(404).json({status: false, error: 'Not found.'});
 
         return res.status(204).end();
       });

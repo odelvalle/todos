@@ -5,6 +5,15 @@ var Validator = require('jsonschema').Validator;
 
 const doc = yaml.load(fs.readFileSync(path.join(__dirname, 'todo-swagger.yaml'), 'utf8'));
 
+/**
+ *
+ * @param {object} options
+ * @param {string} options.path
+ * @param {string} options.method
+ * @param {string} options.parameter
+ * @param {string} options.value
+ * @returns
+ */
 exports.validate = (options) => {
   const validator = new Validator();
 

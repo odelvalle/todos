@@ -7,8 +7,6 @@ const sinonChai = require('sinon-chai');
 const { mockReq, mockRes } = require('sinon-express-mock');
 const expect = chai.expect;
 
-require('sinon-as-promised');
-
 chai.use(sinonChai);
 
 // import our todo model for unit testing
@@ -20,51 +18,46 @@ let TodoMock;
 describe('Todo Unit testing', () => {
   describe('/POST a new todo', () => {
     // test will pass if the todo is saved
-    it('should create a new post', async () => {
+    it('should create a new post', (done) => {
       TodoMock = sinon.mock(Todo);
-      const Model = new Todo();
-      const todoModel = sinon.mock(Model);
 
       const expectedMongoResult = { id: '123456789012345678901234', todo: 'example from test', created: Date.now(), completed: false };
-      TodoMock.expects('create').resolves(Model);
-      todoModel.expects('save').yields(null, expectedMongoResult);
+      TodoMock.expects('create').yields(null, expectedMongoResult);
 
       const req = mockReq({ body: {todo: 'example from test'}});
       const res = mockRes();
 
-      await controller.PostTodo(req, res);
+      controller.PostTodo(req, res);
       expect(res.status).to.be.calledWith(201);
       expect(res.json).to.be.calledWith({status: true, todo: expectedMongoResult});
+
+      done();
     });
 
-    it('should return an error if todo not saved', async () => {
+    it('should return bad request if todo is invalid', (done) => {
       TodoMock = sinon.mock(Todo);
-      const Model = new Todo();
-      const todoModel = sinon.mock(Model);
-
-      TodoMock.expects('create').resolves(Model);
-      todoModel.expects('save').yields(new Error(), null);
-
-      const req = mockReq({ body: {todo: 'example from test'}});
-      const res = mockRes();
-
-      await controller.PostTodo(req, res);
-      expect(res.status).to.be.calledWith(500);
-    });
-
-    it('should return bad request if todo is invalid', async () => {
-      TodoMock = sinon.mock(Todo);
-      const Model = new Todo();
-      const todoModel = sinon.mock(Model);
-
-      TodoMock.expects('create').resolves(Model);
-      todoModel.expects('save').yields(new Error(), null);
+      TodoMock.expects('create').yields(new Error(), null);
 
       const req = mockReq({ body: {task: 'example from test'}});
       const res = mockRes();
 
-      await controller.PostTodo(req, res);
+      controller.PostTodo(req, res);
       expect(res.status).to.be.calledWith(400);
+
+      done();
+    });
+
+    it('should return an error if todo not saved', (done) => {
+      TodoMock = sinon.mock(Todo);
+      TodoMock.expects('create').yields(new Error(), null);
+
+      const req = mockReq({ body: {todo: 'example from test'}});
+      const res = mockRes();
+
+      controller.PostTodo(req, res);
+      expect(res.status).to.be.calledWith(500);
+
+      done();
     });
 
     afterEach(function () {
@@ -217,14 +210,9 @@ describe('Todo Unit testing', () => {
   describe('/PATCH update a todo by id', () => {
     it('should patch a todo', (done) => {
       TodoMock = sinon.mock(Todo);
-      const Model = new Todo({ id: "123456789012345678901234", todo: "example", created: Date.now(), completed: false });
-      const todoModel = sinon.mock(Model);
-
       const expectedMongoPatchResult = { id: "123456789012345678901234", todo: "example 1", created: Date.now(), completed: false };
 
-      TodoMock.expects('findOne').yields(null, Model);
-      todoModel.expects('save').yields(null, expectedMongoPatchResult);
-
+      TodoMock.expects('findOneAndUpdate').yields(null, expectedMongoPatchResult);
 
       const req = mockReq({
         params: { id: '123456789012345678901234' },
@@ -239,29 +227,9 @@ describe('Todo Unit testing', () => {
     });
 
     // test will fail to get a todo
-    it('should return error if we can not get a todo', (done) => {
-      TodoMock = sinon.mock(Todo);
-      TodoMock.expects('findOne').yields(new Error(), null);
-
-      const req = mockReq({
-        params: { id: '123456789012345678901234' },
-        body: { todo: 'example 1' }
-      });
-      const res = mockRes();
-
-      controller.UpdateTodo(req, res);
-      expect(res.status).to.be.calledWith(500);
-
-      done();
-    });
-
     it('should return error if we can not patch a todo', (done) => {
       TodoMock = sinon.mock(Todo);
-      const Model = new Todo({ id: "123456789012345678901234", todo: "example", created: Date.now(), completed: false });
-      const todoModel = sinon.mock(Model);
-
-      TodoMock.expects('findOne').yields(null, Model);
-      todoModel.expects('save').yields(new Error(), null);
+      TodoMock.expects('findOneAndUpdate').yields(new Error(), null);
 
       const req = mockReq({
         params: { id: '123456789012345678901234' },
@@ -305,7 +273,7 @@ describe('Todo Unit testing', () => {
       done();
     });
 
-    it('should return bad request if body is invalid', (done) => {
+    it('should return bad request if body is empty', (done) => {
       TodoMock = sinon.mock(Todo);
 
       const req = mockReq({
@@ -322,7 +290,7 @@ describe('Todo Unit testing', () => {
 
     it('should return not found if todo not exist', (done) => {
       TodoMock = sinon.mock(Todo);
-      TodoMock.expects('findOne').yields(null, null);
+      TodoMock.expects('findOneAndUpdate').yields(null, null);
 
       const req = mockReq({
         params: { id: '123456789012345678901234' },
