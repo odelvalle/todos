@@ -221,6 +221,8 @@ describe('Todo Unit testing', () => {
       const res = mockRes();
 
       controller.UpdateTodo(req, res);
+
+      TodoMock.verify();
       expect(res.json).to.be.calledWith({status: true, todo: expectedMongoPatchResult});
 
       done();
@@ -238,14 +240,14 @@ describe('Todo Unit testing', () => {
       const res = mockRes();
 
       controller.UpdateTodo(req, res);
+
+      TodoMock.verify();
       expect(res.status).to.be.calledWith(500);
 
       done();
     });
 
     it('should return bad request if id is invalid', (done) => {
-      TodoMock = sinon.mock(Todo);
-
       const req = mockReq({
         params: { id: '1234' },
         body: { todo: 'example 1' }
@@ -259,8 +261,6 @@ describe('Todo Unit testing', () => {
     });
 
     it('should return bad request if todo is invalid', (done) => {
-      TodoMock = sinon.mock(Todo);
-
       const req = mockReq({
         params: { id: '123456789012345678901234' },
         body: { completed: 'example 1' }
@@ -299,6 +299,8 @@ describe('Todo Unit testing', () => {
       const res = mockRes();
 
       controller.UpdateTodo(req, res);
+
+      TodoMock.verify();
       expect(res.status).to.be.calledWith(404);
 
       done();
@@ -322,6 +324,8 @@ describe('Todo Unit testing', () => {
       const res = mockRes();
 
       controller.DeleteTodo(req, res);
+
+      TodoMock.verify();
       expect(res.status).to.be.calledWith(204);
 
       done();
@@ -336,6 +340,8 @@ describe('Todo Unit testing', () => {
       const res = mockRes();
 
       controller.DeleteTodo(req, res);
+
+      TodoMock.verify();
       expect(res.status).to.be.calledWith(500);
 
       done();
@@ -349,6 +355,8 @@ describe('Todo Unit testing', () => {
       const res = mockRes();
 
       controller.DeleteTodo(req, res);
+
+      TodoMock.verify();
       expect(res.status).to.be.calledWith(400);
 
       done();
@@ -364,6 +372,8 @@ describe('Todo Unit testing', () => {
       const res = mockRes();
 
       controller.DeleteTodo(req, res);
+
+      TodoMock.verify();
       expect(res.status).to.be.calledWith(404);
 
       done();

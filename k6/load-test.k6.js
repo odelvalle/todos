@@ -72,7 +72,7 @@ export let options = {
       preAllocatedVUs: 10, // how large the initial pool of VUs would be
       maxVUs: 50, // if the preAllocatedVUs are not enough, we can initialize more
       stages: [
-        { target: 200, duration: '10s' }, // go from 50 to 200 iters/s in the first 30 seconds
+        { target: 200, duration: '10s' }, // go from 50 to 200 iters/s in the first 10 seconds
         { target: 200, duration: '15s' }, // hold at 200 iters/s for 15 second
         { target: 0, duration: '30s' }, // ramp down back to 0 iters/s over the last 30 second
       ]

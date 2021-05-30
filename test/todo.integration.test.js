@@ -44,7 +44,7 @@ describe('Todo CRUD integration testing', () => {
     });
 
     it('missing required property should return a 400 with status as false', (done) => {
-      var newTodo = {task: 'New Todo'};
+      const newTodo = {task: 'New Todo'};
       api.post('/api/todos')
          .set('Accept', 'application/json')
          .set('Content-Type', 'application/json')
@@ -168,7 +168,6 @@ describe('Todo CRUD integration testing', () => {
             value: res.body
           })).to.be.null;
 
-          expect(res.body.status).to.be.true;
           expect(res.body.todo.id).to.eql(response.todo.id);
 
           done();
@@ -190,7 +189,6 @@ describe('Todo CRUD integration testing', () => {
             value: res.body
           })).to.be.null;
 
-          expect(res.body.status).to.be.false;
           done();
          });
     });
